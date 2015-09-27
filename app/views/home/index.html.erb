@@ -1,0 +1,54 @@
+<div ng-app="asmApp1" ng-controller="jsController">
+<div id="container">
+	<h2 class="text-center">Assginment 1 (YJM)</h1>
+	<div id="form-login">
+		<% if !session[:logged_in] %>
+		<pre ng-show="flashInfo" class="help-block text-center">{{flashInfo}}</pre>
+		<% else %>
+		<pre class="help-block text-center">Welcome <%= @user.username %> <br />You have logged in <%= @user.count %> times</pre>
+		<% end %>
+
+		<form class="form-horizontal" method=POST name="userForm" novalidate <%= session[:logged_in] ? '' : 'form-drctv' %> >
+			<div id="form-input">
+
+				<% if !session[:logged_in] %>
+				<!-- USERNAME -->
+				<div class="form-group">
+				    <label for="inputUsername" class="col-sm-3 control-label">Username</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" ng-model="username" ng-minlength=5 ng-maxlength=20 required>
+				    </div>
+			  	</div>
+
+			  	<div class="form-group">
+				    <label for="inputPw" class="col-sm-3 control-label">Password</label>
+				    <div class="col-sm-9">
+				      <input type="{{initialType}}" class="form-control" id="inputPw" name="password" placeholder="Password" ng-model="password" ng-minlength=8 ng-maxlength=20 required>
+				    </div>
+				    <!-- PASSWORD SHOW CHECKBOX -->
+				    <div class="col-sm-offset-3 col-sm-9">
+				     	<div class="checkbox">
+				        <label>
+				          	<input type="checkbox" ng-click="togglePassword()"> Show Password
+				        </label>
+				      	</div>
+				  	</div>
+				</div>
+
+				<div id="btns" class="row">
+					<div class="col-md-6 text-center"><button type="button" class="btn btn-primary" ng-click="loginUser()" ng-disabled="!userForm.username.$valid || !userForm.password.$valid">Login</button></div>
+					<div class="col-md-6 text-center"><button type="button" class="btn btn-primary" ng-model="button_adduser" ng-click="addUser()" ng-disabled="!userForm.username.$valid || !userForm.password.$valid">Add User</button></div>
+				</div>
+
+			  	<% else %>
+
+			  	<div id="btns" class="row">
+					<div class="col-md-12 text-center"><button type="button" class="btn btn-primary" ng-click="logout()">Logout</button></div>
+				</div>
+
+			  	<% end %>
+
+
+		</form>
+	</div>
+</div>
