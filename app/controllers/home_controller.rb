@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
   	if session[:logged_in] == true
-  		@user = User.find_by(username: session[:username].downcase)
+  		@user = User.find_by(username: session[:username])
   	end
 
   	respond_to do |format|
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
 
   def login
-  	@user = User.find_by(username: params[:username].downcase)
+  	@user = User.find_by(username: params[:username])
   	if @user && @user.password == params[:password]
 		# count++
 		@user.count += 1

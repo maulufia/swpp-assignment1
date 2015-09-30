@@ -16,7 +16,7 @@
 //= require_tree .
 
 // create angular app
-var asmApp1 = angular.module('asmApp1', ['ngCookies', 'ngRoute']);
+var asmApp1 = angular.module('asmApp1', []);
 
 /*========================================
 =            GLOBAL VARIABLES            =
@@ -33,7 +33,7 @@ var SAY_HELLO = 'Please enter your credentials below';
 
 
 // create angular controller
-asmApp1.controller('jsController', function($scope, $http, $window, $cookies, $route) {
+asmApp1.controller('jsController', function($scope, $http, $window) {
 
 	/*======================================
 	=            initialization            =
